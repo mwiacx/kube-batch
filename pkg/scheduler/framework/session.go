@@ -26,6 +26,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/util/uuid"
+	"k8s.io/kubernetes/pkg/scheduler/algorithm"
 
 	"github.com/kubernetes-sigs/kube-batch/pkg/apis/scheduling/v1alpha1"
 	"github.com/kubernetes-sigs/kube-batch/pkg/scheduler/api"
@@ -60,6 +61,7 @@ type Session struct {
 	jobBackfillReadyFns map[string]api.ValidateFn
 	jobPipelinedFns     map[string]api.ValidateFn
 	jobValidFns         map[string]api.ValidateExFn
+	nodePrioritizers    map[string][]algorithm.PriorityConfig
 	backFillEligibleFns map[string]api.BackFillEligibleFn
 }
 
@@ -85,6 +87,7 @@ func openSession(cache cache.Cache) *Session {
 		jobBackfillReadyFns: map[string]api.ValidateFn{},
 		jobPipelinedFns:     map[string]api.ValidateFn{},
 		jobValidFns:         map[string]api.ValidateExFn{},
+		nodePrioritizers:    map[string][]algorithm.PriorityConfig{},
 		backFillEligibleFns: map[string]api.BackFillEligibleFn{},
 	}
 

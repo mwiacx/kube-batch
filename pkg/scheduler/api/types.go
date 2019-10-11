@@ -65,25 +65,25 @@ type TaskCondition struct {
 }
 
 // JobReadiness type of job readiness
-type JobReadiness int
+//type JobReadiness int
 
-const (
-	// Ready : a job is Ready if the number of tasks in Allocated state
-	// exceeds the job's minimum task number requirement. In other words,
-	// #(Allocated Tasks) >= Job.MinAvailable
-	// A Ready job can be dispatch to a node right away.
-	Ready JobReadiness = 1 << iota
+//const (
+// Ready : a job is Ready if the number of tasks in Allocated state
+// exceeds the job's minimum task number requirement. In other words,
+// #(Allocated Tasks) >= Job.MinAvailable
+// A Ready job can be dispatch to a node right away.
+//	Ready JobReadiness = 1 << iota
 
-	// ConditionallyReady : a job is ConditionallyReady if the job is not Ready for dispatch, but
-	// the number of tasks in Allocated state exceeds the job's minim task
-	// number requirement. In other words,
-	// #(Allocated Tasks) < Job.MinAvailable &&
-	// #(Allocated Tasks) + #(AllocatedOverBackFill Tasks) >= Job.MinAvailable
-	ConditionallyReady
+// ConditionallyReady : a job is ConditionallyReady if the job is not Ready for dispatch, but
+// the number of tasks in Allocated state exceeds the job's minim task
+// number requirement. In other words,
+// #(Allocated Tasks) < Job.MinAvailable &&
+// #(Allocated Tasks) + #(AllocatedOverBackFill Tasks) >= Job.MinAvailable
+//	ConditionallyReady
 
-	// NotReady : #(Allocated Tasks) + #(AllocatedOverBackFill Tasks) < Job.MinAvailable
-	NotReady
-)
+// NotReady : #(Allocated Tasks) + #(AllocatedOverBackFill Tasks) < Job.MinAvailable
+//	NotReady
+//)
 
 // AllocatedStatuses all status of allocated
 func AllocatedStatuses() []TaskStatus {
@@ -121,6 +121,7 @@ type NodePhase int
 const (
 	// Ready means the node is ready for scheduling
 	Ready NodePhase = 1 << iota
+	ConditionallyReady
 	// NotReady means the node is not ready for scheduling
 	NotReady
 )
