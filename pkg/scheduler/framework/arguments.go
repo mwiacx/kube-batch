@@ -26,12 +26,12 @@ import (
 type Arguments map[string]string
 
 //GetInt get the integer value from string
-func (a Arguments) GetInt(ptr *int, key string) {
+func (arg Arguments) GetInt(ptr *int, key string) {
 	if ptr == nil {
 		return
 	}
 
-	argv, ok := a[key]
+	argv, ok := arg[key]
 	if !ok || argv == "" {
 		return
 	}
